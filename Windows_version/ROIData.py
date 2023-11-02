@@ -95,7 +95,9 @@ def ROIData_edit(data_folder,TMIN,TMAX):
                             del VOut[0]
                     dT = File['dT'][1:]
                     TIn += sum(list(compress(dT,data_in[:-1])))
+                    print(TIn)
                     TOut += sum(list(compress(dT,data_out[:-1])))
+                    print(TOut)
                     sanity = TIn+TOut
                     perc_time_rec = round((TIn/sanity)*100,4)
                     entry = int(Changes/2)
@@ -211,8 +213,12 @@ def ROIData_180sec(data_folder):
                     dT = File['dT'][1:]
                     TIn += sum(list(compress(dT,data_in[:-1])))
                     TOut += sum(list(compress(dT,data_out[:-1])))
+                    print(TIn,TOut)
                     sanity = TIn+TOut
-                    perc_time_rec = round((TIn/sanity)*100,4)
+                    if sanity ==0:
+                        perc_time_rec = 0
+                    else:
+                        perc_time_rec = round((TIn/sanity)*100,4)
                     entry = int(Changes/2)
                     if entry ==0:
                         Mean_t_per_entry= 'No entry'
